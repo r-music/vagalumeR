@@ -1,7 +1,4 @@
----
-title: "vagalumeR: Access the Vagalume API via R"
-output: html_document
----
+# vagalumeR: Access the Vagalume API via R #
 
 This package allows you to access the Vagalume API via R. You can get
 information about specific artists/bands, as their related artists,
@@ -80,12 +77,10 @@ Where:
 
 ```{r, message=FALSE}
 #---------
-net <- data.frame(Source = rel$name, 
-                  Target = rel$related)
-networkD3::simpleNetwork(net,
-                         fontSize = 14,
-                         linkColour = "turquoise",
-                         nodeColour = "tomato")
+library(network)
+df <- data.frame(rel$name, rel$related)
+net <- network(df)
+plot(net, label = network.vertex.names(net))
 ```
 
 ```{r, message=FALSE}
@@ -100,9 +95,9 @@ Where:
   - `song` is the name of the song;
 
 ```{r, message=FALSE}
-# lyr <- map(songs$song.id[1:5], lyrics, type = "id")
-songs$song.id[1:5]
-# lyr[sample(nrow(lyr), 2), ]
+lyr <- ldply(map(songs$song.id[1:5], lyrics, type = "id"), data.frame)
+
+lyr[sample(nrow(lyr), 2), ]
 ```
 
 Where:
@@ -114,33 +109,33 @@ Where:
   - `text` is the lyrics text of the song;
   - `tr.text` is the translation text of the song;
 
-```{r}
-# library(tm)
-# # Creates the Corpus
-# m <- lyr[lyr$name == "The Beatles", ]
-# 
-# cps <- VCorpus(VectorSource(m$text),
-#                  readerControl = list(language = "en"))
-# 
-# cps <- tm_map(cps, FUN = content_transformer(tolower))
-# cps <- tm_map(cps, FUN = removePunctuation)
-# cps <- tm_map(cps, FUN = removeNumbers)
-# cps <- tm_map(cps, FUN = stripWhitespace)  
-# cps <- tm_map(cps,
-#                 FUN = removeWords,
-#                 words = stopwords("english"))
-# dtm <- DocumentTermMatrix(cps)
-# 
-# frq <- slam::colapply_simple_triplet_matrix(dtm, FUN = sum)
-# frq <- sort(frq, decreasing = TRUE)
-# 
-# library(lattice)
-# # Shows the most common words in songs from The Beatles
-# barchart(head(frq, n = 45), xlim = c(0, NA),
-#          col =  "violet", 
-#          xlab = "Frequência",
-#          ylab = "Bi-gramas",
-#          strip = strip.custom(bg = "white"))
+```{r, message=FALSE}
+library(tm)
+# Creates the Corpus
+m <- lyr[lyr$name == "The Beatles", ]
+
+cps <- VCorpus(VectorSource(m$text),
+                 readerControl = list(language = "en"))
+
+cps <- tm_map(cps, FUN = content_transformer(tolower))
+cps <- tm_map(cps, FUN = removePunctuation)
+cps <- tm_map(cps, FUN = removeNumbers)
+cps <- tm_map(cps, FUN = stripWhitespace)
+cps <- tm_map(cps,
+                FUN = removeWords,
+                words = stopwords("english"))
+dtm <- DocumentTermMatrix(cps)
+
+frq <- slam::colapply_simple_triplet_matrix(dtm, FUN = sum)
+frq <- sort(frq, decreasing = TRUE)
+
+library(lattice)
+# Shows the most common words in songs from The Beatles
+barchart(head(frq, n = 45), xlim = c(0, NA),
+          col =  "violet", 
+          xlab = "Frequency",
+          ylab = "Words",
+          strip = strip.custom(bg = "white"))
 ```
 
 
