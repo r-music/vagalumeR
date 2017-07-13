@@ -23,7 +23,7 @@ help(package = "vagalumeR")
 
 ------------------------------------------------------------------------
 
-Some examples of the usage of this package are above:
+Some examples of the usage of this package are below:
 ```{r, echo = FALSE, message=FALSE}
 library(vagalumeR)
 ```
