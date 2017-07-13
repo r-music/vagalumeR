@@ -1,0 +1,146 @@
+---
+title: "vagalumeR: Access the Vagalume API via R"
+output: html_document
+---
+
+This package allows you to access the Vagalume API via R. You can get
+information about specific artists/bands, as their related artists,
+and information about the lyrics, as the top lyrics of an artist/band
+and the text of a song itself. 
+
+
+The `vagalumeR` package is developed under control version using Git 
+and is hosted in GitHub. You can download it from GitHub using `devtools`:
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("brunaw/vagalumeR")
+```
+
+For exploring the content of the package, you may try:
+```{r, eval=FALSE}
+library(vagalumeR)
+packageVersion("vagalumeR")
+ls("package:vagalumeR")
+help(package = "vagalumeR")
+```
+
+------------------------------------------------------------------------
+
+Some examples of the usage of this package are above:
+```{r, echo = FALSE, message=FALSE}
+library(vagalumeR)
+```
+
+```{r, message=FALSE}
+artists <- c("the-beatles", "madonna", "chico-buarque",
+             "the-rolling-stones", "molejo")
+
+library(tidyverse)
+library(plyr)
+
+ldply(map(artists, artistInfo), data.frame)
+```
+
+Where:
+
+  - `id` is the identifier of the artist/band;
+  - `name` is the name of  the artist/band;
+  - `views` is the number of views received by the artist/band at the
+  Vagalume Website;
+  - `pos` is the position of the artist/band at the Vagalume Ranking;
+  - `period` is the period of evaluation;
+  - `uniques` counts the number of unique views of the artist/band;
+  - `points` is the pontuation of the artist/band at the Vagalume 
+  Ranking;
+
+```{r, message=FALSE}
+disc <- ldply(map(artists, discography), data.frame)
+
+disc[sample(nrow(disc), 10), ]
+xtabs(~name, disc)
+```
+
+Where:
+
+  - `album.id` is the identifier of album;
+  - `album.name` is the name of  the album;
+  - `label` is the record label of the album;
+  - `date` is the of release of the album;
+
+```{r, message=FALSE}
+rel <- ldply(map(artists, relatedInfo), data.frame)
+
+rel[sample(nrow(rel), 10), ]
+```
+Where:
+
+  - `rel.id` is the identifier of the related band/artist;
+  - `related` is the name of the related band/artist;
+
+
+```{r, message=FALSE}
+#---------
+net <- data.frame(Source = rel$name, 
+                  Target = rel$related)
+networkD3::simpleNetwork(net,
+                         fontSize = 14,
+                         linkColour = "turquoise",
+                         nodeColour = "tomato")
+```
+
+```{r, message=FALSE}
+songs <- ldply(map(artists, songNames), data.frame)
+
+songs[sample(nrow(songs), 10), ]
+```
+
+Where:
+
+  - `song.id` is the identifier of the song;
+  - `song` is the name of the song;
+
+```{r, message=FALSE}
+# lyr <- map(songs$song.id[1:5], lyrics, type = "id")
+songs$song.id[1:5]
+# lyr[sample(nrow(lyr), 2), ]
+```
+
+Where:
+
+  - `language` is the language of the song;
+  - `song` is the name of the song;
+  - `language` is the language of the song (1 = portuguese,
+  2 = english)
+  - `text` is the lyrics text of the song;
+  - `tr.text` is the translation text of the song;
+
+```{r}
+# library(tm)
+# # Creates the Corpus
+# m <- lyr[lyr$name == "The Beatles", ]
+# 
+# cps <- VCorpus(VectorSource(m$text),
+#                  readerControl = list(language = "en"))
+# 
+# cps <- tm_map(cps, FUN = content_transformer(tolower))
+# cps <- tm_map(cps, FUN = removePunctuation)
+# cps <- tm_map(cps, FUN = removeNumbers)
+# cps <- tm_map(cps, FUN = stripWhitespace)  
+# cps <- tm_map(cps,
+#                 FUN = removeWords,
+#                 words = stopwords("english"))
+# dtm <- DocumentTermMatrix(cps)
+# 
+# frq <- slam::colapply_simple_triplet_matrix(dtm, FUN = sum)
+# frq <- sort(frq, decreasing = TRUE)
+# 
+# library(lattice)
+# # Shows the most common words in songs from The Beatles
+# barchart(head(frq, n = 45), xlim = c(0, NA),
+#          col =  "violet", 
+#          xlab = "Frequência",
+#          ylab = "Bi-gramas",
+#          strip = strip.custom(bg = "white"))
+```
+
+

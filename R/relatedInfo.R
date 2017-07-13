@@ -15,6 +15,7 @@
 #' relatedInfo("chico-buarque")
 #'
 library(jsonlite)
+library(curl)
 
 relatedInfo <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
@@ -23,7 +24,7 @@ relatedInfo <- function(name){
 
   rel <- data.frame(id = cont$artist$id,
                     name = cont$artist$desc,
-                    id.rel = cont$artist$related$id,
+                    rel.id = cont$artist$related$id,
                     related = cont$artist$related$name)
   return(rel)
 }

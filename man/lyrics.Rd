@@ -27,7 +27,7 @@ lyrics(identifier, type, artist)
 
 identifier <- "3ade68b4gdc96eda3"
 type <- "id"
-lyrics(identifier, type, artist)
+lyrics(identifier, type)
 
 }
 \author{

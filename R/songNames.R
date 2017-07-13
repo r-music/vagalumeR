@@ -16,6 +16,7 @@
 #'
 
 library(jsonlite)
+library(curl)
 
 songNames <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
@@ -24,7 +25,7 @@ songNames <- function(name){
 
   mus <- data.frame(id = cont$artist$id,
                     name = cont$artist$desc,
-                    id.song = cont$artist$lyrics$item$id,
+                    song.id = cont$artist$lyrics$item$id,
                     song = cont$artist$lyrics$item$desc)
   return(mus)
 }

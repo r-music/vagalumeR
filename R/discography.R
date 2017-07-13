@@ -14,6 +14,7 @@
 #'
 
 library(jsonlite)
+library(curl)
 
 discography <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/discografia/index.js"))

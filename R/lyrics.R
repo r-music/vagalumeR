@@ -18,7 +18,7 @@
 #'
 #' identifier <- "3ade68b4gdc96eda3"
 #' type <- "id"
-#' lyrics(identifier, type, artist)
+#' lyrics(identifier, type)
 #'
 
 library(plyr)
@@ -42,7 +42,7 @@ lyrics <- function(identifier, type, artist){
                     name = cont$art$name,
                     song.id = l$id,
                     song = l$name,
-                    language = l$name,
+                    language = l$lang,
                     text = l$text)
   mus$text <- as.character(mus$text)
   mus$text <- str_replace_all(mus$text, "[\n]" , " ")
