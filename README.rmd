@@ -86,6 +86,7 @@ disc[sample(nrow(disc), 10), ]
 # 109                        1995 3ade68b6g28c9eda3 Rolling Stones
 
 xtabs(~name, disc)
+
 # name
 #  Chico Buarque        Madonna         Molejo Rolling Stones 
 #             44             27              8             50 
@@ -104,6 +105,7 @@ Where:
 rel <- ldply(map(artists, relatedInfo), data.frame)
 
 rel[sample(nrow(rel), 10), ]
+
 #                   id           name            rel.id
 # 23 3ade68b4g66c6eda3  Chico Buarque 3ade68b5gac58eda3
 # 24 3ade68b4g66c6eda3  Chico Buarque 3ade68b5gfe48eda3
@@ -127,6 +129,7 @@ rel[sample(nrow(rel), 10), ]
 # 26               Maria Bethânia
 # 13              Michael Jackson
 ```
+
 Where:
 
   - `rel.id` is the identifier of the related band/artist;
@@ -141,10 +144,35 @@ net <- network(df)
 plot(net, label = network.vertex.names(net))
 ```
 
+<center><img src="net.png" alt="Top 100 network" style="width: 450px;"/></center>
+
 ```{r, message=FALSE}
 songs <- ldply(map(artists, songNames), data.frame)
 
 songs[sample(nrow(songs), 10), ]
+
+#                     id           name           song.id
+# 1173 3ade68b6g28c9eda3 Rolling Stones 3ade68b7gca4b3ea3
+# 197  3ade68b3gce86eda3    The Beatles 3ade68b6geaddfda3
+# 1156 3ade68b6g28c9eda3 Rolling Stones 3ade68b7gd94b3ea3
+# 1234 3ade68b6g28c9eda3 Rolling Stones 3ade68b6g320feda3
+# 1220 3ade68b6g28c9eda3 Rolling Stones 3ade68b7g6d4b3ea3
+# 972  3ade68b4g66c6eda3  Chico Buarque 3ade68b7g8c788ea3
+# 308  3ade68b3gce86eda3    The Beatles 3ade68b6gbcddfda3
+# 755  3ade68b4g66c6eda3  Chico Buarque 3ade68b7g8fce9ea3
+# 1112 3ade68b6g28c9eda3 Rolling Stones 3ade68b8gdb34b0b3
+# 1154 3ade68b6g28c9eda3 Rolling Stones 3ade68b7ga94b3ea3
+#                            song
+# 1173                 Crazy Mama
+# 197  Money (That's What I Want)
+# 1156          Child Of The Moon
+# 1234      Good Times, Bad Times
+# 1220             Fortune Teller
+# 972                Partido Alto
+# 308    What's The New Mary Jane
+# 755                Cem Mil Réis
+# 1112           All Of Your Love
+# 1154             Chantilly Lace
 ```
 
 Where:
@@ -156,6 +184,19 @@ Where:
 lyr <- ldply(map(songs$song.id[1:5], lyrics, type = "id"), data.frame)
 
 lyr[sample(nrow(lyr), 2), ]
+
+#                  id        name           song.id
+# 1 3ade68b3gce86eda3 The Beatles 3ade68b4gdc96eda3
+# 4 3ade68b3gce86eda3 The Beatles 3ade68b6gbdddfda3
+#                         song language
+# 1          A Day In The Life        2
+# 4 A Shot of Rhythm and Blues        2
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ... <truncated>
+# 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  I read the news today oh boy About a lucky man who made the grave And though the news was rather sad Well I just had to laugh I saw the photograph  He blew his mind out in a car He didn't notice that the lights had changed A crowd of people stood and stared They'd seen his face before Nobody was really sure if he was from the House of Lords.  I saw a film today oh boy The English Army had just won the war A crowd of people turned away But I just had a look Having read the book, I'd love to turn y... <truncated>
+# 4 Well, if your hands start a-clapping and your fingers start a-popping And your feet start a-moving around And if you start to swing and sway when the band start to play A real cool and way-out sound And if you get the can't help it, when you can't sit down You feel like you gotta move around  You get a shot of rhythm and blues With just a little rock and roll on the side Just for good measure You get a pair of dancing shoes Well, with your lover by your side Don't you know you're gonna have a lot of pleasure?  Don't you worry 'bout a thing, when you start to dance and sing Until bumps come up on you And if the rhythm finally gets you and the beat gets her, too Well, here's the thing for you to do  Get a shot of rhythm and blues With just a little rock and roll on the side Just for good measure Get a pair of dancing shoes Well, with your lover by your side Don't you know you're gonna have a lot of pleasure?  Don't you worry 'bout a thing, when you start to dance and sing Until bumps c... <truncated>
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ... <truncated>
+# 1                                                                                                                                                                                                                                                                                                                                                                                                                      [Um Dia na Vida]   Eu li as notícias hoje, caramba Sobre um sortudo que morreu E apesar de as notícias serem tristes Eu tive que rir Eu vi a foto  Ele estourou a cabeça em um carro Ele não percebeu que o sinal tinha mudado Uma grupo de pessoas parou e olhou Elas já tinham visto seu rosto antes Ninguém tinha certeza se ele era da Casa dos Lordes  Eu vi um filme hoje, caramba O Exército Inglês havia ganhado a guerra Um grupo de pessoas se retirou Mas eu tive que olhar Tendo lido o livro, eu adoraria te excitar  Acordei, caí da cama Passei um pente pela cabeça Encontrei meu caminho em baix... <truncated>
+# 4 [Uma Dose de Rhythm And Blues] Se suas mãos começam a bater e seus dedos a estalarem E se os seus pés começarem a se mexer pra lá e pra cá E se você começa a balançar  quando a banda começa a tocar Um som realmente maneiro E se você não consegue se segurar e nem ficar sentado Você sente que precisa se mexer  Você tem uma boa dose de 'rhythm and blues' Com apenas um pouco de rock and roll na borda Só para acompanhar Pegue um par de sapatos de dança E aí, com o seu amor do seu lado Já sacou que você vai se divertir um bocado?  Não ligue pra nada quando começar a dançar e a cantar Até ficar todo arrepiado E se o ritmo finalmente se apossa de você e a batida dela Bem, aí é contigo mesmo  Sirva-se de uma boa dose de 'rhythm and blues' Com apenas um pouco de rock and roll na borda Só para acompanhar Pegue um par de sapatos de dança E aí, com o seu amor do seu lado Já sacou que você vai se divertir um bocado?  Não ligue pra nada quando começar a dançar e a cantar Até ficar todo arrepiado E ... <truncated>
 ```
 
 Where:
@@ -195,5 +236,7 @@ barchart(head(frq, n = 45), xlim = c(0, NA),
           ylab = "Words",
           strip = strip.custom(bg = "white"))
 ```
+
+<center><img src="freq.png" alt="Top 100 network" style="width: 400px;"/></center>
 
 
