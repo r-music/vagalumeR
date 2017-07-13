@@ -19,7 +19,8 @@ The variables returned by the function are extracted with
 }
 \examples{
 
-disc("the-beatles")
+discography("the-beatles")
+
 }
 \author{
 Bruna Wundervald, \email{brunadaviesw@ufpr.br}.
