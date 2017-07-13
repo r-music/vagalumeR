@@ -36,6 +36,13 @@ library(tidyverse)
 library(plyr)
 
 ldply(map(artists, artistInfo), data.frame)
+
+#                  id           name  views pos period uniques points
+# 1 3ade68b3gce86eda3    The Beatles 115586  24 201706   57221   42.5
+# 2 3ade68b3g1f86eda3        Madonna   1519 169 201707     767   10.9
+# 3 3ade68b4g66c6eda3  Chico Buarque   4603 109 201707    2124   15.2
+# 4 3ade68b6g28c9eda3 Rolling Stones  28633 265 201706   15997    7.1
+# 5 3ade68b5g2f48eda3         Molejo   7843 826 201706    4652    1.9
 ```
 
 Where:
@@ -54,7 +61,36 @@ Where:
 disc <- ldply(map(artists, discography), data.frame)
 
 disc[sample(nrow(disc), 10), ]
+
+#              album.id                     album.name
+# 32  3ade68b6g9758fda3         Sticky and Sweet: Live
+# 155 3ade68b6g94c7fda3                   Polivalência
+# 36  3ade68b6g8408fda3 I'm Going to Tell You a Secret
+# 25  3ade68b6g5ff5fda3               Beatles for Sale
+# 147 3ade68b6gcd18fda3       The Rolling Stones No. 2
+# 38  3ade68b6g1a14fda3            Remixed & Revisited
+# 27  3ade68b6g3ff5fda3               With the Beatles
+# 90  3ade68b6gf8d6fda3              Meus Caros Amigos
+# 89  3ade68b6g3638fda3                  Chico Buarque
+# 109 3ade68b6g9166fda3                       Stripped
+#                      label date                id           name
+# 32                Maverick 2010 3ade68b3g1f86eda3        Madonna
+# 155                        2000 3ade68b5g2f48eda3         Molejo
+# 36                     wea 2006 3ade68b3g1f86eda3        Madonna
+# 25                     EMI 1964 3ade68b3gce86eda3    The Beatles
+# 147                  DECCA 1965 3ade68b6g28c9eda3 Rolling Stones
+# 38                     wea 2003 3ade68b3g1f86eda3        Madonna
+# 27                     EMI 1963 3ade68b3gce86eda3    The Beatles
+# 90         Universal Music 1976 3ade68b4g66c6eda3  Chico Buarque
+# 89  Universal Music Brasil 1978 3ade68b4g66c6eda3  Chico Buarque
+# 109                        1995 3ade68b6g28c9eda3 Rolling Stones
+
 xtabs(~name, disc)
+# name
+#  Chico Buarque        Madonna         Molejo Rolling Stones 
+#             44             27              8             50 
+#    The Beatles 
+#             28 
 ```
 
 Where:
@@ -68,6 +104,28 @@ Where:
 rel <- ldply(map(artists, relatedInfo), data.frame)
 
 rel[sample(nrow(rel), 10), ]
+#                   id           name            rel.id
+# 23 3ade68b4g66c6eda3  Chico Buarque 3ade68b5gac58eda3
+# 24 3ade68b4g66c6eda3  Chico Buarque 3ade68b5gfe48eda3
+# 38 3ade68b6g28c9eda3 Rolling Stones 3ade68b5gc5a8eda3
+# 42 3ade68b5g2f48eda3         Molejo 3ade68b3g9d86eda3
+# 28 3ade68b4g66c6eda3  Chico Buarque 3ade68b5g65d7eda3
+# 1  3ade68b3gce86eda3    The Beatles 3ade68b3gee86eda3
+# 34 3ade68b6g28c9eda3 Rolling Stones 3ade68b5g5018eda3
+# 5  3ade68b3gce86eda3    The Beatles 3ade68b6g28c9eda3
+# 26 3ade68b4g66c6eda3  Chico Buarque 3ade68b5g7d48eda3
+# 13 3ade68b3g1f86eda3        Madonna 3ade68b5g8be7eda3
+#                         related
+# 23                    Tom Jobim
+# 24            Milton Nascimento
+# 38                Elvis Presley
+# 42                  Art Popular
+# 28                 Zeca Baleiro
+# 1                   John Lennon
+# 34 Creedence Clearwater Revival
+# 5                Rolling Stones
+# 26               Maria Bethânia
+# 13              Michael Jackson
 ```
 Where:
 
