@@ -28,7 +28,14 @@ Some examples of the usage of this package are below:
 library(vagalumeR)
 ```
 
+First of all, you'll need one API key, that can be obtained at the 
+[Vagalume Website](https://auth.vagalume.com.br/settings/api/). You'll
+need to register at the Website for that. 
 ```{r, message=FALSE}
+# Copy and paste your api key at the following object:
+key <- "putyourapikeyhere"
+
+#-----------
 artists <- c("the-beatles", "madonna", "chico-buarque",
              "the-rolling-stones", "molejo")
 
@@ -181,7 +188,8 @@ Where:
   - `song` is the name of the song;
 
 ```{r, message=FALSE}
-lyr <- ldply(map(songs$song.id[1:5], lyrics, type = "id"), data.frame)
+lyr <- ldply(map(songs$song.id[1:5], lyrics, type = "id", key = key),
+             data.frame)
 
 lyr[sample(nrow(lyr), 2), ]
 

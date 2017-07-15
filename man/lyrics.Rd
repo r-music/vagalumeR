@@ -4,7 +4,13 @@
 \alias{lyrics}
 \title{Lyrics of a song.}
 \arguments{
+\item{identifier}{The identifier of the song.}
+
+\item{type}{The type of identifier os the song ("name" or "id").}
+
 \item{name}{The name of the artist/band.}
+
+\item{key}{The apikey.}
 }
 \value{
 \code{lyrics} returns a data.frame with information

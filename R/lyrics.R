@@ -4,7 +4,10 @@
 #' @title Lyrics of a song.
 #' @description Gives the lyrics text of a song and the translation text,
 #'    when the language of the song its not Portuguese.
+#' @param identifier The identifier of the song.
+#' @param type The type of identifier os the song ("name" or "id").
 #' @param name The name of the artist/band.
+#' @param key The apikey.
 #' @return \code{lyrics} returns a data.frame with information
 #'     about the artist, the song and the texts.
 #' @details The variables returned by the function are extracted with
@@ -25,12 +28,12 @@ library(plyr)
 library(stringr)
 library(curl)
 
-lyrics <- function(identifier, type, artist){
+lyrics <- function(identifier, type, artist, key){
   if(type == "id"){
-    req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",identifier,"&apikey={key}"))
+    req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",identifier,"&apikey=", key))
   }
   if(type == "name"){
-    req <- httr::GET(paste("https://api.vagalume.com.br/search.php?art=",artist,"&mus=",identifier,"&extra=relmus&apikey={key}"))
+    req <- httr::GET(paste("https://api.vagalume.com.br/search.php?art=",artist,"&mus=",identifier,"&extra=relmus&apikey=", key))
   }
 
   cont <- httr::content(req)
