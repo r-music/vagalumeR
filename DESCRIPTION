@@ -4,7 +4,7 @@ Title: Access to the Vagalume API via R
 Version: 0.1.0
 Author: Bruna Wundervald
 Maintainer: Bruna Wundervald <brunadaviesw@gmail.com>
-Description: This package provides access to the Vagalume API. 
+Description: Provides access to the Vagalume API. 
     The data extracted is basically lyrics of songs and information about
     artists/bands.
 Depends: 
