@@ -15,6 +15,9 @@
 #' topLyrics("chico-buarque")
 #'
 
+library(httr)
+library(jsonlite)
+
 topLyrics <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
   json <-httr::content(req)

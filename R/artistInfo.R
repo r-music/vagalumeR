@@ -13,6 +13,7 @@
 #' artistInfo("chico-buarque")
 #'
 library(jsonlite)
+library(httr)
 
 artistInfo <- function(name){
 req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))

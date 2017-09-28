@@ -12,6 +12,7 @@ Depends:
     jsonlite,
     stringr,
     plyr,
+    httr,
     curl
 Suggests: 
     lattice,

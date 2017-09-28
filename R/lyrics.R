@@ -27,6 +27,7 @@
 library(plyr)
 library(stringr)
 library(curl)
+library(httr)
 
 lyrics <- function(identifier, type, artist, key){
   if(type == "id"){

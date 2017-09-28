@@ -16,6 +16,7 @@
 #'
 library(jsonlite)
 library(curl)
+library(httr)
 
 relatedInfo <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
