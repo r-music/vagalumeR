@@ -1,26 +1,26 @@
 Package: vagalumeR
 Type: Package
 Title: Access to the Vagalume API via R
-Version: 0.1.0
+Version: 0.1.0.9000
 Author: Bruna Wundervald
 Maintainer: Bruna Wundervald <brunadaviesw@gmail.com>
 Description: Provides access to the Vagalume API. 
     The data extracted is basically lyrics of songs and information about
     artists/bands.
-Depends: 
-    R (>= 3.2.3),
-    jsonlite,
-    stringr,
-    plyr,
-    httr,
-    curl
-Suggests: 
+Depends: R (>= 3.2.3)
+Suggests:
     lattice,
     latticeExtra,
-    knitr
+    knitr,
+    network,
+    tm
 URL: https://github.com/brunaw/vagalumeR
 BugReports: https://github.com/brunaw/vagalumeR/issues
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Imports: jsonlite,
+    httr,
+    stringr,
+    plyr
