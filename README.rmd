@@ -1,10 +1,23 @@
+---
+output: github_document
+---
+
+[![Travis-CI Build Status](https://travis-ci.org/jtrecenti/vagalumeR.svg?branch=master)](https://travis-ci.org/jtrecenti/vagalumeR)
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
 # vagalumeR: Access the Vagalume API via R #
 
 This package allows you to access the Vagalume API via R. You can get
 information about specific artists/bands, as their related artists,
 and information about the lyrics, as the top lyrics of an artist/band
 and the text of a song itself. 
-
 
 The `vagalumeR` package is developed under control version using Git 
 and is hosted in GitHub. You can download it from GitHub using `devtools`:
@@ -143,15 +156,13 @@ Where:
   - `related` is the name of the related band/artist;
 
 
-```{r, message=FALSE}
+```{r net, message=FALSE}
 #---------
 library(network)
 df <- data.frame(rel$name, rel$related)
 net <- network(df)
 plot(net, label = network.vertex.names(net))
 ```
-
-<center><img src="net.png" alt="Top 100 network" style="width: 450px;"/></center>
 
 ```{r, message=FALSE}
 songs <- ldply(map(artists, songNames), data.frame)
@@ -216,7 +227,7 @@ Where:
   - `text` is the lyrics text of the song;
   - `tr.text` is the translation text of the song;
 
-```{r, message=FALSE}
+```{r freq, message=FALSE}
 library(tm)
 # Creates the Corpus
 m <- lyr[lyr$name == "The Beatles", ]
@@ -244,7 +255,4 @@ barchart(head(frq, n = 45), xlim = c(0, NA),
           ylab = "Words",
           strip = strip.custom(bg = "white"))
 ```
-
-<center><img src="freq.png" alt="Top 100 network" style="width: 400px;"/></center>
-
 
