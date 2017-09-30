@@ -11,17 +11,14 @@
 #'     the Vagalume API.
 #' @examples
 #'
+#' \dontrun{
 #' relatedInfo("the-beatles")
 #' relatedInfo("chico-buarque")
-#'
-library(jsonlite)
-library(curl)
-library(httr)
-
+#' }
 relatedInfo <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
   json <-httr::content(req)
-  cont <- fromJSON(json)
+  cont <- jsonlite::fromJSON(json)
 
   rel <- data.frame(id = cont$artist$id,
                     name = cont$artist$desc,
