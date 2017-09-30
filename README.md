@@ -1,5 +1,5 @@
 
-[![Travis-CI Build Status](https://travis-ci.org/jtrecenti/vagalumeR.svg?branch=master)](https://travis-ci.org/jtrecenti/vagalumeR)
+[![Travis-CI Build Status](https://travis-ci.org/brunaw/vagalumeR.svg?branch=master)](https://travis-ci.org/brunaw/vagalumeR)
 
 vagalumeR: Access the Vagalume API via R
 ========================================
