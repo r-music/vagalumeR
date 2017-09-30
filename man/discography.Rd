@@ -3,6 +3,9 @@
 \name{discography}
 \alias{discography}
 \title{Discography of an artist/band.}
+\usage{
+discography(name)
+}
 \arguments{
 \item{name}{The name of the artist/band.}
 }
@@ -19,8 +22,9 @@ The variables returned by the function are extracted with
 }
 \examples{
 
+\dontrun{
 discography("the-beatles")
-
+}
 }
 \author{
 Bruna Wundervald, \email{brunadaviesw@ufpr.br}.

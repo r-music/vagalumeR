@@ -3,12 +3,15 @@
 \name{lyrics}
 \alias{lyrics}
 \title{Lyrics of a song.}
+\usage{
+lyrics(identifier, type, artist, key)
+}
 \arguments{
 \item{identifier}{The identifier of the song.}
 
 \item{type}{The type of identifier os the song ("name" or "id").}
 
-\item{name}{The name of the artist/band.}
+\item{artist}{The name of the artist/band.}
 
 \item{key}{The apikey.}
 }
@@ -26,6 +29,7 @@ The variables returned by the function are extracted with
 }
 \examples{
 
+\dontrun{
 identifier <- "A-Day-In-The-Life"
 artist <- "the-beatles"
 type <- "name"
@@ -34,7 +38,7 @@ lyrics(identifier, type, artist)
 identifier <- "3ade68b4gdc96eda3"
 type <- "id"
 lyrics(identifier, type)
-
+}
 }
 \author{
 Bruna Wundervald, \email{brunadaviesw@ufpr.br}.

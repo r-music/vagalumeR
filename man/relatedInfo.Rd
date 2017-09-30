@@ -3,6 +3,9 @@
 \name{relatedInfo}
 \alias{relatedInfo}
 \title{Artist's Related}
+\usage{
+relatedInfo(name)
+}
 \arguments{
 \item{name}{The name of the artist/band.}
 }
@@ -20,9 +23,10 @@ The variables returned by the function are extracted with
 }
 \examples{
 
+\dontrun{
 relatedInfo("the-beatles")
 relatedInfo("chico-buarque")
-
+}
 }
 \author{
 Bruna Wundervald, \email{brunadaviesw@ufpr.br}.

@@ -3,6 +3,9 @@
 \name{artistInfo}
 \alias{artistInfo}
 \title{Artist Information}
+\usage{
+artistInfo(name)
+}
 \arguments{
 \item{name}{The name of the artist/band.}
 }
@@ -18,8 +21,10 @@ The variables returned by the function are extracted with
 }
 \examples{
 
+\dontrun{
 artistInfo("the-beatles")
 artistInfo("chico-buarque")
+}
 
 }
 \author{
