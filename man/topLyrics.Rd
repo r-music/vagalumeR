@@ -23,8 +23,10 @@ The variables returned by the function are extracted with
 }
 \examples{
 
+\dontrun{
 topLyrics("the-beatles")
 topLyrics("chico-buarque")
+}
 
 }
 \author{

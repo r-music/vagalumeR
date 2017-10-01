@@ -10,18 +10,14 @@
 #'     the Vagalume API.
 #' @examples
 #'
+#' \dontrun{
 #' discography("the-beatles")
-#'
-
-library(jsonlite)
-library(curl)
-library(httr)
-
+#' }
 discography <- function(name){
   req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/discografia/index.js"))
   json <-httr::content(req)
 
-  cont <- fromJSON(json)
+  cont <- jsonlite::fromJSON(json)
 
   disc <- data.frame(album.id = cont$discography$item$id,
                      album.name = cont$discography$item$desc,

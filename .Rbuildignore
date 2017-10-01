@@ -1,2 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.travis\.yml$
+^freq\.png$
+^net\.png$
+^README\.rmd$
+^README\.Rmd$
+^README-.*\.png$

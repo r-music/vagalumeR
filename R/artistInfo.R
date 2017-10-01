@@ -9,23 +9,23 @@
 #'     the Vagalume API.
 #' @examples
 #'
+#' \dontrun{
 #' artistInfo("the-beatles")
 #' artistInfo("chico-buarque")
+#' }
 #'
-library(jsonlite)
-library(httr)
+artistInfo <- function(name) {
 
-artistInfo <- function(name){
-req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
-json <-httr::content(req)
-cont <- fromJSON(json)
+  req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
+  json <-httr::content(req)
+  cont <- jsonlite::fromJSON(json)
 
-artist <- data.frame(id = cont$artist$id,
-                     name = cont$artist$desc,
-                     views = cont$artist$rank$views,
-                     pos = cont$artist$rank$pos,
-                     period = cont$artist$rank$period,
-                     uniques = cont$artist$rank$uniques,
-                     points = cont$artist$rank$points)
-return(artist)
+  artist <- data.frame(id = cont$artist$id,
+                       name = cont$artist$desc,
+                       views = cont$artist$rank$views,
+                       pos = cont$artist$rank$pos,
+                       period = cont$artist$rank$period,
+                       uniques = cont$artist$rank$uniques,
+                       points = cont$artist$rank$points)
+  return(artist)
 }

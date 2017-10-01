@@ -3,6 +3,9 @@
 \name{songNames}
 \alias{songNames}
 \title{Song names of an artist/band.}
+\usage{
+songNames(name)
+}
 \arguments{
 \item{name}{The name of the artist/band.}
 }
@@ -20,8 +23,10 @@ The variables returned by the function are extracted with
 }
 \examples{
 
+\dontrun{
 songNames("the-beatles")
 songNames("chico-buarque")
+}
 
 }
 \author{

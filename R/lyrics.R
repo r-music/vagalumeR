@@ -6,7 +6,7 @@
 #'    when the language of the song its not Portuguese.
 #' @param identifier The identifier of the song.
 #' @param type The type of identifier os the song ("name" or "id").
-#' @param name The name of the artist/band.
+#' @param artist The name of the artist/band.
 #' @param key The apikey.
 #' @return \code{lyrics} returns a data.frame with information
 #'     about the artist, the song and the texts.
@@ -14,6 +14,7 @@
 #'     the Vagalume API.
 #' @examples
 #'
+#' \dontrun{
 #' identifier <- "A-Day-In-The-Life"
 #' key <- "your token"
 #' artist <- "the-beatles"
@@ -33,16 +34,18 @@ library(httr)
 
 lyrics <- function(identifier, type, artist, key){
   if(type == "id"){
-    req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",identifier,"&apikey=", key))
+    req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",
+                          identifier,"&apikey=", key))
   }
   if(type == "name"){
-    req <- httr::GET(paste("https://api.vagalume.com.br/search.php?art=",artist,"&mus=",identifier,"&extra=relmus&apikey=", key))
+    req <- httr::GET(paste("https://api.vagalume.com.br/search.php?art=",
+                           artist,"&mus=",identifier,"&extra=relmus&apikey=", key))
   }
 
   cont <- httr::content(req)
 
   l <- lapply(cont$mus, "[", c("id", "name", "lang", "text"))
-  l <- ldply(l, data.frame)
+  l <- plyr::ldply(l, data.frame)
 
   mus <- data.frame(id = cont$art$id,
                     name = cont$art$name,
@@ -51,14 +54,14 @@ lyrics <- function(identifier, type, artist, key){
                     language = l$lang,
                     text = l$text)
   mus$text <- as.character(mus$text)
-  mus$text <- str_replace_all(mus$text, "[\n]" , " ")
+  mus$text <- stringr::str_replace_all(mus$text, "[\n]" , " ")
 
   if(cont$mus[[1]]$lang > 1){
     tr <- lapply(cont$mus[[1]]$translate, "[", c("text"))
-    tr <- ldply(tr, data.frame)
+    tr <- plyr::ldply(tr, data.frame)
     mus <- data.frame(mus, tr$text)
     mus$tr.text <- as.character(mus$tr.text)
-    mus$tr.text <- str_replace_all(mus$tr.text, "[\n]" , " ")
+    mus$tr.text <- stringr::str_replace_all(mus$tr.text, "[\n]" , " ")
   }
 
   return(mus)
