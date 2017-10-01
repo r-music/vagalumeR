@@ -29,11 +29,13 @@ The variables returned by the function are extracted with
 identifier <- "A-Day-In-The-Life"
 artist <- "the-beatles"
 type <- "name"
-lyrics(identifier, type, artist)
+key <- "your token"
+lyrics(identifier, type, artist, key)
 
+key <- "your token"
 identifier <- "3ade68b4gdc96eda3"
 type <- "id"
-lyrics(identifier, type)
+lyrics(identifier = identifier, type = type, key = key)
 
 }
 \author{
