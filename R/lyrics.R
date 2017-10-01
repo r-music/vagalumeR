@@ -16,14 +16,22 @@
 #'
 #' \dontrun{
 #' identifier <- "A-Day-In-The-Life"
+#' key <- "your token"
 #' artist <- "the-beatles"
 #' type <- "name"
-#' lyrics(identifier, type, artist)
+#' lyrics(identifier, type, artist, key)
 #'
+#' key <- "your token"
 #' identifier <- "3ade68b4gdc96eda3"
 #' type <- "id"
-#' lyrics(identifier, type)
-#' }
+#' lyrics(identifier = identifier, type = type, key = key)
+#'
+
+library(plyr)
+library(stringr)
+library(curl)
+library(httr)
+
 lyrics <- function(identifier, type, artist, key){
   if(type == "id"){
     req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",
