@@ -25,7 +25,7 @@
 #' identifier <- "3ade68b4gdc96eda3"
 #' type <- "id"
 #' lyrics(identifier = identifier, type = type, key = key)
-#'
+#' }
 
 lyrics <- function(identifier, type, artist, key){
   if(type == "id"){
