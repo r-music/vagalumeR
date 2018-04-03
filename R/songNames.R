@@ -1,5 +1,5 @@
 #' @name songNames
-#' @author Bruna Wundervald, \email{brunadaviesw@ufpr.br}.
+#' @author Bruna Wundervald, \email{brunadaviesw@gmail.com}.
 #' @export
 #' @title Song names of an artist/band.
 #' @description Gives information about the song names of an specific
@@ -22,7 +22,7 @@ songNames <- function(name, message = TRUE){
   name <- stringr::str_to_lower(name)
   
   req <- httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
-  json <- httr::content(req)
+  json <- httr::content(req, encoding = "UTF-8")
   cont <- jsonlite::fromJSON(json)
 
   if(!is.null(cont)){

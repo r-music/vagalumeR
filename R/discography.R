@@ -1,5 +1,5 @@
 #' @name discography
-#' @author Bruna Wundervald, \email{brunadaviesw@ufpr.br}.
+#' @author Bruna Wundervald, \email{brunadaviesw@gmail.com}.
 #' @export
 #' @title Discography of an artist/band.
 #' @description Gives the list of albums of an specific artist/band.

@@ -1,5 +1,5 @@
 #' @name lyrics
-#' @author Bruna Wundervald, \email{brunadaviesw@ufpr.br}.
+#' @author Bruna Wundervald, \email{brunadaviesw@gmail.com}.
 #' @export
 #' @title Lyrics of a song.
 #' @description Gives the lyrics text of a song and the translation text,
@@ -40,7 +40,7 @@ lyrics <- function(identifier, type, artist, key, message = TRUE){
                            artist,"&mus=",identifier,"&extra=relmus&apikey=", key))
   }
 
-  cont <- httr::content(req)
+  cont <- httr::content(req, encoding = "UTF-8")
   if(!is.null(cont)){
 
   l <- lapply(cont$mus, "[", c("id", "name", "lang", "text"))
