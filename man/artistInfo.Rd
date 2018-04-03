@@ -4,10 +4,13 @@
 \alias{artistInfo}
 \title{Artist Information}
 \usage{
-artistInfo(name)
+artistInfo(name, message = TRUE)
 }
 \arguments{
 \item{name}{The name of the artist/band.}
+
+\item{message}{Should the function print something if the
+required data is not found?}
 }
 \value{
 \code{artistInfo} returns a data.frame with the information.

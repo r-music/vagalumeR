@@ -4,10 +4,13 @@
 \alias{topLyrics}
 \title{Top lyrics of an artist/band}
 \usage{
-topLyrics(name)
+topLyrics(name, message = TRUE)
 }
 \arguments{
 \item{name}{The name of the artist/band.}
+
+\item{message}{Should the function print something if the
+required data is not found?}
 }
 \value{
 \code{topLyrics} returns a data.frame with information

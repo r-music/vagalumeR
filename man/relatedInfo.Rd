@@ -4,10 +4,13 @@
 \alias{relatedInfo}
 \title{Artist's Related}
 \usage{
-relatedInfo(name)
+relatedInfo(name, message = TRUE)
 }
 \arguments{
 \item{name}{The name of the artist/band.}
+
+\item{message}{Should the function print something if the
+required data is not found?}
 }
 \value{
 \code{relatedInfo} returns a data.frame with information

@@ -8,6 +8,8 @@
 #' @param type The type of identifier os the song ("name" or "id").
 #' @param artist The name of the artist/band.
 #' @param key The apikey.
+#' @param message Should the function print something if the
+#' required data is not found?
 #' @return \code{lyrics} returns a data.frame with information
 #'     about the artist, the song and the texts.
 #' @details The variables returned by the function are extracted with
@@ -26,7 +28,9 @@
 #' type <- "id"
 #' lyrics(identifier = identifier, type = type, key = key)
 #' }
-lyrics <- function(identifier, type, artist, key){
+lyrics <- function(identifier, type, artist, key, message = TRUE){
+  artist <- stringr::str_to_lower(artist)
+  
   if(type == "id"){
     req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",
                           identifier,"&apikey=", key))
@@ -37,6 +41,7 @@ lyrics <- function(identifier, type, artist, key){
   }
 
   cont <- httr::content(req)
+  if(!is.null(cont)){
 
   l <- lapply(cont$mus, "[", c("id", "name", "lang", "text"))
   l <- plyr::ldply(l, data.frame)
@@ -58,5 +63,8 @@ lyrics <- function(identifier, type, artist, key){
     mus$tr.text <- stringr::str_replace_all(mus$tr.text, "[\n]" , " ")
   }
 
+  } else{ 
+    mus <- NULL
+    if(message) print("Lyrics not found") }
   return(mus)
 }

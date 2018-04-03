@@ -4,7 +4,7 @@
 \alias{lyrics}
 \title{Lyrics of a song.}
 \usage{
-lyrics(identifier, type, artist, key)
+lyrics(identifier, type, artist, key, message = TRUE)
 }
 \arguments{
 \item{identifier}{The identifier of the song.}
@@ -14,6 +14,9 @@ lyrics(identifier, type, artist, key)
 \item{artist}{The name of the artist/band.}
 
 \item{key}{The apikey.}
+
+\item{message}{Should the function print something if the
+required data is not found?}
 }
 \value{
 \code{lyrics} returns a data.frame with information
@@ -31,9 +34,9 @@ The variables returned by the function are extracted with
 
 \dontrun{
 identifier <- "A-Day-In-The-Life"
+key <- "your token"
 artist <- "the-beatles"
 type <- "name"
-key <- "your token"
 lyrics(identifier, type, artist, key)
 
 key <- "your token"

@@ -4,10 +4,13 @@
 \alias{discography}
 \title{Discography of an artist/band.}
 \usage{
-discography(name)
+discography(name, message = TRUE)
 }
 \arguments{
 \item{name}{The name of the artist/band.}
+
+\item{message}{Should the function print something if the
+required data is not found?}
 }
 \value{
 \code{discography} returns a data.frame with information

@@ -1,7 +1,7 @@
 Package: vagalumeR
 Type: Package
 Title: Access to the 'Vagalume' API
-Version: 0.1.1
+Version: 0.1.2
 Author: Bruna Wundervald
 Maintainer: Bruna Wundervald <brunadaviesw@gmail.com>
 Description: Provides access to the 'Vagalume' API <https://api.vagalume.com.br>. 
