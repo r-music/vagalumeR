@@ -55,12 +55,14 @@ lyrics <- function(identifier, type, artist, key, message = TRUE){
   mus$text <- as.character(mus$text)
   mus$text <- stringr::str_replace_all(mus$text, "[\n]" , " ")
 
-  if(cont$mus[[1]]$lang > 1){
-    tr <- lapply(cont$mus[[1]]$translate, "[", c("text"))
-    tr <- plyr::ldply(tr, data.frame)
-    mus <- data.frame(mus, tr$text)
-    mus$tr.text <- as.character(mus$tr.text)
-    mus$tr.text <- stringr::str_replace_all(mus$tr.text, "[\n]" , " ")
+  if(!is.null(cont$mus[[1]]$lang) && cont$mus[[1]]$lang > 1){
+    if(!is.null(cont$mus[[1]]$translate)){
+      tr <- lapply(cont$mus[[1]]$translate, "[", c("text"))
+      tr <- plyr::ldply(tr, data.frame)
+      mus <- data.frame(mus, tr$text)
+      mus$tr.text <- as.character(mus$tr.text)
+      mus$tr.text <- stringr::str_replace_all(mus$tr.text, "[\n]" , " ")
+    }
   }
 
   } else{ 
@@ -68,3 +70,4 @@ lyrics <- function(identifier, type, artist, key, message = TRUE){
     if(message) print("Lyrics not found") }
   return(mus)
 }
+
