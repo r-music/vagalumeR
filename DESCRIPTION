@@ -1,7 +1,7 @@
 Package: vagalumeR
 Type: Package
 Title: Access to the 'Vagalume' API
-Version: 0.1.2
+Version: 0.1.3
 Author: Bruna Wundervald
 Maintainer: Bruna Wundervald <brunadaviesw@gmail.com>
 Description: Provides access to the 'Vagalume' API <https://api.vagalume.com.br>. 
@@ -14,8 +14,8 @@ Suggests:
     knitr,
     network,
     tm
-URL: https://github.com/brunaw/vagalumeR
-BugReports: https://github.com/brunaw/vagalumeR/issues
+URL: https://github.com/r-music/vagalumeR
+BugReports: https://github.com/r-music/vagalumeR/issues
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

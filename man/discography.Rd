@@ -30,5 +30,5 @@ discography("the-beatles")
 }
 }
 \author{
-Bruna Wundervald, \email{brunadaviesw@ufpr.br}.
+Bruna Wundervald, \email{brunadaviesw@gmail.com}.
 }
