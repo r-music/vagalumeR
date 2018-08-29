@@ -6,3 +6,4 @@
 ^README\.rmd$
 ^README\.Rmd$
 ^README-.*\.png$
+^vagalumeR.Rproj

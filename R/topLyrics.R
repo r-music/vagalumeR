@@ -21,9 +21,8 @@
 topLyrics <- function(name, message = TRUE){
   name <- stringr::str_to_lower(name)
   
-  req <- httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
-  json <- httr::content(req, encoding = "UTF-8")
-  cont <- jsonlite::fromJSON(json)
+  cont <- paste0("https://www.vagalume.com.br/",name,"/index.js") %>% 
+    jsonlite::fromJSON()
   
   if(!is.null(cont)){
     top <- data.frame(id = cont$artist$id,

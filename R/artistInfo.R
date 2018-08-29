@@ -18,10 +18,9 @@
 #'
 artistInfo <- function(name, message = TRUE) {
   name <- stringr::str_to_lower(name)
+  cont <- paste0("https://www.vagalume.com.br/",name,"/index.js") %>% 
+    jsonlite::fromJSON()
   
-  req <-httr::GET(paste("https://www.vagalume.com.br/",name,"/index.js"))
-  json <-httr::content(req, encoding = "UTF-8")
-  cont <- jsonlite::fromJSON(json)
 
   if(!is.null(cont)){
   artist <- data.frame(id = cont$artist$id,
@@ -37,3 +36,5 @@ artistInfo <- function(name, message = TRUE) {
       print("Artist not found.")}
   return(artist)
 }
+
+
