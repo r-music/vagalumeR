@@ -1,5 +1,5 @@
 
-[![Travis-CI Build Status](https://travis-ci.org/r-music/vagalumeR.svg?branch=master)
+![Travis-CI Build Status](https://travis-ci.org/r-music/vagalumeR.svg?branch=master)
 
 vagalumeR: Access the Vagalume API via R
 ========================================
