@@ -3,7 +3,8 @@
 ^\.travis\.yml$
 ^freq\.png$
 ^net\.png$
-^README\.rmd$
+^README\.md$
 ^README\.Rmd$
+^README\.rmd$
 ^README-.*\.png$
 ^vagalumeR.Rproj

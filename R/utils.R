@@ -12,3 +12,6 @@
 #'   iris %>% as.matrix()
 #'}
 NULL
+
+# Get rid of NOTES
+globalVariables(c(".", "name", "id", "text"))

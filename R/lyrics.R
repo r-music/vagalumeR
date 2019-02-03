@@ -32,42 +32,47 @@ lyrics <- function(identifier, type, artist, key, message = TRUE){
   artist <- stringr::str_to_lower(artist)
   
   if(type == "id"){
-    req <-httr::GET(paste("https://api.vagalume.com.br/search.php?musid=",
-                          identifier,"&apikey=", key))
+    req <-httr::GET(paste0("https://api.vagalume.com.br/search.php?apikey=",
+                           key, "&musid=", identifier))
   }
   if(type == "name"){
-    req <- httr::GET(paste("https://api.vagalume.com.br/search.php?art=",
-                           artist,"&mus=",identifier,"&extra=relmus&apikey=", key))
+    req <- httr::GET(paste0("https://api.vagalume.com.br/search.php?art=",
+                            artist,"&mus=",identifier,"&extra=relmus&apikey=", key))
   }
-
+  
   cont <- httr::content(req, encoding = "UTF-8")
-  if(!is.null(cont)){
-
-  l <- lapply(cont$mus, "[", c("id", "name", "lang", "text"))
-  l <- plyr::ldply(l, data.frame)
-
-  mus <- data.frame(id = cont$art$id,
-                    name = cont$art$name,
-                    song.id = l$id,
-                    song = l$name,
-                    language = l$lang,
-                    text = l$text)
-  mus$text <- as.character(mus$text)
-  mus$text <- stringr::str_replace_all(mus$text, "[\n]" , " ")
-
+  
+  if(!is.null(cont$mus)){
+    
+  mus <- cont$mus[[1]][c(1, 2, 4, 5)]  %>%
+    purrr::transpose() %>%
+    purrr::map_df(data.frame) %>% 
+    dplyr::mutate(id = identifier,
+                  name = artist,
+                  song.id = id, 
+                  song = name, 
+                  text = stringr::str_replace_all(
+                    as.character(text), "[\n]" , " ")) %>% 
+    `if`(!is.null(cont$mus[[1]]$translate[[1]]$lang), 
+         dplyr::mutate(., 
+                       language = cont$mus[[1]]$translate[[1]]$lang), .)  
+  
+  cont$mus[[1]]$translate
   if(!is.null(cont$mus[[1]]$lang) && cont$mus[[1]]$lang > 1){
     if(!is.null(cont$mus[[1]]$translate)){
-      tr <- lapply(cont$mus[[1]]$translate, "[", c("text"))
-      tr <- plyr::ldply(tr, data.frame)
-      mus <- data.frame(mus, tr$text)
-      mus$tr.text <- as.character(mus$tr.text)
-      mus$tr.text <- stringr::str_replace_all(mus$tr.text, "[\n]" , " ")
+      
+      mus <- mus %>% 
+        dplyr::mutate(
+          translation = 
+            stringr::str_replace_all(
+              cont$mus[[1]]$translate[[1]]$text,
+              "[\n]" , " "))
     }
   }
-
-  } else{ 
-    mus <- NULL
+  } 
+  else{ mus <- NULL
     if(message) print("Lyrics not found") }
+  Sys.sleep(2)
   return(mus)
 }
 
