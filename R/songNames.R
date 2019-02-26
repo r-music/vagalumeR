@@ -27,7 +27,8 @@ songNames <- function(name, message = TRUE){
     mus <- data.frame(id = cont$artist$id,
                       name = cont$artist$desc,
                       song.id = cont$artist$lyrics$item$id,
-                      song = cont$artist$lyrics$item$desc)
+                      song = cont$artist$lyrics$item$desc,
+                      stringsAsFactors = FALSE)
   } else{
     mus <- NULL
     if(message) print("No song names found.")

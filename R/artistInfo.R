@@ -29,7 +29,8 @@ artistInfo <- function(name, message = TRUE) {
                        pos = cont$artist$rank$pos,
                        period = cont$artist$rank$period,
                        uniques = cont$artist$rank$uniques,
-                       points = cont$artist$rank$points)
+                       points = cont$artist$rank$points, 
+                       stringsAsFactors = FALSE)
   } else{ 
     artist <- NULL
     if(message) 

@@ -28,7 +28,8 @@ topLyrics <- function(name, message = TRUE){
     top <- data.frame(id = cont$artist$id,
                       name = cont$artist$desc,
                       id.top = cont$artist$toplyrics$item$id,
-                      song = cont$artist$toplyrics$item$desc)
+                      song = cont$artist$toplyrics$item$desc,
+                      stringsAsFactors = FALSE)
   } else{
     top <- NULL
     if(message) print("No top lyrics found.")

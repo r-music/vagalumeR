@@ -27,7 +27,8 @@ relatedInfo <- function(name, message = TRUE){
     rel <- data.frame(id = cont$artist$id,
                       name = cont$artist$desc,
                       rel.id = cont$artist$related$id,
-                      related = cont$artist$related$name)
+                      related = cont$artist$related$name,
+                      stringsAsFactors = FALSE)
   } else { 
     rel <- NULL
     if(message) print("No related artists available.")

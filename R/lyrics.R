@@ -46,7 +46,7 @@ lyrics <- function(identifier, type, artist, key, message = TRUE){
     
   mus <- cont$mus[[1]][c(1, 2, 4, 5)]  %>%
     purrr::transpose() %>%
-    purrr::map_df(data.frame) %>% 
+    purrr::map_df(data.frame, stringsAsFactors=FALSE) %>% 
     dplyr::mutate(id = identifier,
                   name = artist,
                   song.id = id, 
