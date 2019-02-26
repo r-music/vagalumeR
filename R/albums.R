@@ -23,7 +23,7 @@ albums <- function (name, message = TRUE) {
   cont <- paste0("https://www.vagalume.com.br/", name, "/index.js") %>% 
     jsonlite::fromJSON()
   if (!is.null(cont)) {
-    albums <- data.frame(cont$artist$album$item)[,-3] 
+    albums <- data.frame(cont$artist$album$item, stringsAsFactors = FALSE)[,-3] 
     names(albums)[2] <- "title"
   }
   else {

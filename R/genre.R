@@ -24,7 +24,7 @@ genre <- function (name, message = TRUE) {
   cont <- paste0("https://www.vagalume.com.br/", name, "/index.js") %>% 
     jsonlite::fromJSON()
   if (!is.null(cont)) {
-    genre <- data.frame(genre = cont$artist$genre$name)
+    genre <- data.frame(genre = cont$artist$genre$name, stringsAsFactors = FALSE)
   }
   else {
     genre <- NULL
