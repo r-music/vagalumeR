@@ -39,7 +39,7 @@ artists <- c("the-beatles", "madonna", "chico-buarque",
 library(tidyverse)
 library(plyr)
 
-ldply(map(artists, artistInfo), data.frame)
+map_dfr(artists, artistInfo)
 #>                  id           name views pos period uniques points
 #> 1 3ade68b3gce86eda3    The Beatles 47167  28 201709   20796   37.7
 #> 2 3ade68b3g1f86eda3        Madonna 12893 190 201709    6131   11.1
@@ -66,7 +66,7 @@ Where:
 -   `points` is the pontuation of the artist/band at the Vagalume Ranking;
 
 ``` r
-disc <- ldply(map(artists, discography), data.frame)
+disc <- map_dfr(artists, discography)
 
 disc[sample(nrow(disc), 10), ]
 #>              album.id                                          album.name
@@ -146,7 +146,7 @@ Where:
 -   `date` is the of release of the album;
 
 ``` r
-rel <- ldply(map(artists, relatedInfo), data.frame)
+rel <- map_dfr(artists, relatedInfo)
 
 rel[sample(nrow(rel), 10), ]
 #>                   id           name            rel.id           related
@@ -201,7 +201,7 @@ plot(net, label = network.vertex.names(net))
 ![](README-net-1.png)
 
 ``` r
-songs <- ldply(map(artists, songNames), data.frame)
+songs <- map_dfr(artists, songNames)
 
 songs[sample(nrow(songs), 10), ]
 #>                     id           name           song.id
@@ -257,8 +257,7 @@ Where:
 -   `song` is the name of the song;
 
 ``` r
-lyr <- ldply(map(songs$song.id[1:5], lyrics, type = "id", key = key),
-             data.frame)
+lyr <- map_dfr(songs$song.id[1:5], lyrics, type = "id", key = key)
 
 lyr[sample(nrow(lyr), 2), ]
 #>                  id        name           song.id
