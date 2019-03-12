@@ -46,13 +46,14 @@ lyrics <- function(identifier, type, artist, key, message = TRUE){
     
   mus <- cont$mus[[1]][c(1, 2, 4, 5)]  %>%
     purrr::transpose() %>%
-    purrr::map_df(data.frame, stringsAsFactors=FALSE) %>% 
-    dplyr::mutate(id = identifier,
-                  name = artist,
-                  song.id = id, 
-                  song = name, 
-                  text = stringr::str_replace_all(
-                    as.character(text), "[\n]" , " ")) %>% 
+    purrr::map_df(data.frame, stringsAsFactors = FALSE) %>% 
+    dplyr::mutate(
+      song.id = id, 
+      song = name, 
+      id = identifier,
+      name_artist = artist,
+      text = stringr::str_replace_all(
+        as.character(text), "[\n]" , " ")) %>% 
     `if`(!is.null(cont$mus[[1]]$translate[[1]]$lang), 
          dplyr::mutate(., 
                        language = cont$mus[[1]]$translate[[1]]$lang), .)  
