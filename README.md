@@ -11,6 +11,13 @@ The `vagalumeR` package is developed under version control using Git and is host
 
 **If you enjoy this work, consider [buying me a coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=89DH4WYL2M7XW&source=url), so I can keep developing and maintaining this package :)**
 
+<p align="center">
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=89DH4WYL2M7XW&source=url">
+    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" />
+  </a>
+</p>
+
+
 
 # vagalumeR: Access the Vagalume API via R #
 
