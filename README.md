@@ -9,13 +9,15 @@ This package allows you to access the Vagalume API via R. You can get informatio
 The `vagalumeR` package is developed under version control using Git and is hosted in GitHub. You can download it from GitHub using `devtools`:
 
 
-**If you enjoy this work, consider [buying me a coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=89DH4WYL2M7XW&source=url), so I can keep developing and maintaining this package :)**
+**If you enjoy this work, consider [buying me a coffee in ko-fi](https://ko-fi.com/brunawundervald), or Paypal:**
 
 <p align="center">
   <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=89DH4WYL2M7XW&source=url">
     <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" />
   </a>
 </p>
+
+**so I can keep developing and maintaining this package :)**
 
 
 
